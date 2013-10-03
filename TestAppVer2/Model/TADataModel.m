@@ -19,7 +19,7 @@
         //init array with 50 images
         shotsList_ = [[NSMutableArray alloc] init];
         
-        for(int i=0;i<15;i++)
+        for(int i=0; i < 50; i++)
         {
             [shotsList_ addObject:[NSString stringWithFormat:@"foto%d.png",i]];
         }
@@ -29,7 +29,7 @@
         
         //load foto to cache (need be load in new thread)
         shotsListFotoCache_ = [[NSMutableArray alloc] init];
-        for(int i=0; i < 15; i++)
+        for(int i=0; i < 50; i++)
         {
             //resize image
             CGSize newSize = CGSizeMake(250, 200);
