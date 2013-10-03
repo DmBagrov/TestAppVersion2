@@ -19,12 +19,27 @@
         //init array with 50 images
         shotsList_ = [[NSMutableArray alloc] init];
         
-        for(int i=0;i<50;i++)
+        for(int i=0;i<15;i++)
         {
             [shotsList_ addObject:[NSString stringWithFormat:@"foto%d.png",i]];
         }
         //
         shotsCount = [shotsList_ count];
+        //
+        
+        //load foto to cache (need be load in new thread)
+        shotsListFotoCache_ = [[NSMutableArray alloc] init];
+        for(int i=0; i < 15; i++)
+        {
+            //resize image
+            CGSize newSize = CGSizeMake(250, 200);
+            UIGraphicsBeginImageContext(newSize);
+            [[UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",i]] drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+            [shotsListFotoCache_ addObject:UIGraphicsGetImageFromCurrentImageContext()];
+            //load image, but not desized, but on new thread
+            UIGraphicsEndImageContext();
+
+        }
         //
         
         //init fav list
@@ -40,7 +55,7 @@
 }
 
 //-----------------------------------------------
-//Shots list methods
+// Shots list methods
 //-----------------------------------------------
 
 -(NSString*)getItemNameByIndex:(NSInteger)index
@@ -50,7 +65,8 @@
 
 -(UIImage*)getImageByIndex:(NSInteger)index
 {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",index]];
+    //return [UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",index]];
+    return [shotsListFotoCache_ objectAtIndex:index];
 }
 
 //-----------------------------------------------

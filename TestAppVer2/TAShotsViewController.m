@@ -29,10 +29,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    //load image in new thread
+    NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
     
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc]
+                                        initWithTarget:self
+                                        selector:@selector(createDataObject) object:nil];
+    [queue addOperation:operation];
+    [operation release];
+    //
+}
+
+-(void)createDataObject
+{
     //create model object
     dataObject = [[TADataModel alloc] init];
+    
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +73,7 @@
                  initWithStyle:UITableViewCellStyleDefault
                  reuseIdentifier:cellID] init];
     }
+    
     cell.imageView.image = [dataObject getImageByIndex:indexPath.row];
     cell.textLabel.text = [dataObject getItemNameByIndex:indexPath.row];
     
@@ -107,29 +122,14 @@
     
 }
 
-//need reworked
--(void) threadRun
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        
-        [self performSelectorOnMainThread:@selector(updateTable) withObject:nil waitUntilDone:false];
-        [NSThread sleepForTimeInterval:0.2];
-        //NSLog(@"Multi-threaded after? %@", [NSThread isMultiThreaded] ? @"Yes" : @"No");
-    
-    [pool release];
-}
-
--(void)updateTable
-{
-    [self.tableView reloadData];
-}
-
+//update list when retun from favorite
 -(void)viewWillAppear:(BOOL)animated
 {
     //NSLog(@"updated");
     [super viewWillAppear:animated];
     
-    [NSThread detachNewThreadSelector:@selector(threadRun) toTarget:self withObject:nil];
+    NSLog(@"update");
+    [self.tableView reloadData];
 }
 //
 

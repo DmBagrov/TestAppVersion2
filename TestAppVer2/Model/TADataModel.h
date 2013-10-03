@@ -11,6 +11,8 @@
 @interface TADataModel : NSObject
 {
     NSMutableArray *shotsList_;
+    NSMutableArray *shotsListFotoCache_;
+    
     NSMutableArray *favoriteList_;
 }
 
