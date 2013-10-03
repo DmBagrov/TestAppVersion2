@@ -14,7 +14,7 @@
 
 @implementation TAShotsViewController
 
-@synthesize dataObject;
+@synthesize dataObject, imageCachingIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +28,18 @@
 							
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
+    [super viewDidLoad];    
     //load image in new thread
+    
+    //load activity indicator
+    [imageCachingIndicator setCenter:CGPointMake([UIScreen mainScreen].applicationFrame.size.width/2,
+                                                 [UIScreen mainScreen].applicationFrame.size.height/2.5)];
+    
+    
+    [imageCachingIndicator startAnimating];
+    [self.view addSubview:imageCachingIndicator];
+    //
+    
     NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
     
     NSInvocationOperation *operation = [[NSInvocationOperation alloc]
@@ -45,7 +54,6 @@
 {
     //create model object
     dataObject = [[TADataModel alloc] init];
-    
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
@@ -134,4 +142,9 @@
 //
 
 
+-(void)dealloc {
+    
+    [imageCachingIndicator release];
+    [super dealloc];
+    }
 @end

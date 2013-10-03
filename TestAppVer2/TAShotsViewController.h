@@ -13,6 +13,7 @@
 {
 
 }
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *imageCachingIndicator;
 
 @property (retain) TADataModel *dataObject;
 

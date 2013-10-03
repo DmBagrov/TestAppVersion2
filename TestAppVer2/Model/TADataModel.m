@@ -58,6 +58,7 @@
 // Shots list methods
 //-----------------------------------------------
 
+
 -(NSString*)getItemNameByIndex:(NSInteger)index
 {
     return [shotsList_ objectAtIndex:index];
@@ -65,7 +66,6 @@
 
 -(UIImage*)getImageByIndex:(NSInteger)index
 {
-    //return [UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",index]];
     return [shotsListFotoCache_ objectAtIndex:index];
 }
 
