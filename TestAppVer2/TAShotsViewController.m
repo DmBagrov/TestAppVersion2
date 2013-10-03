@@ -71,6 +71,9 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //images in cache, stop image caching indicator animation
+    imageCachingIndicator.hidden = YES;
+    
     NSString *cellID = [NSString stringWithFormat:@"%d",indexPath.row];
     //NSLog(cellID);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];

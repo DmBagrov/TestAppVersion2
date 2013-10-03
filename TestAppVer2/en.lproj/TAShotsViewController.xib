@@ -32,12 +32,11 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIActivityIndicatorView" id="941265336">
+			<object class="IBUIActivityIndicatorView" id="163590536">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{37, 37}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="IBUIOpaque">NO</bool>
@@ -55,7 +54,6 @@
 				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{320, 499}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor" id="853447227">
@@ -67,6 +65,7 @@
 				<bool key="IBUIAlwaysBounceVertical">YES</bool>
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+				<bool key="IBUIAllowsSelection">NO</bool>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 				<float key="IBUIRowHeight">80</float>
 				<float key="IBUISectionHeaderHeight">22</float>
@@ -78,7 +77,6 @@
 				<array class="NSMutableArray" key="NSSubviews"/>
 				<string key="NSFrame">{{0, 20}, {320, 499}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView"/>
 				<reference key="IBUIBackgroundColor" ref="853447227"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -117,7 +115,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">imageCachingIndicator</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="941265336"/>
+						<reference key="destination" ref="163590536"/>
 					</object>
 					<int key="connectionID">29</int>
 				</object>
@@ -171,7 +169,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
-						<reference key="object" ref="941265336"/>
+						<reference key="object" ref="163590536"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</array>
@@ -191,40 +189,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">29</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">TAShotsViewController</string>
-					<string key="superclassName">UITableViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">favoriteButtonPressed:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">favoriteButtonPressed:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">favoriteButtonPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">imageCachingIndicator</string>
-						<string key="NS.object.0">UIActivityIndicatorView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">imageCachingIndicator</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">imageCachingIndicator</string>
-							<string key="candidateClassName">UIActivityIndicatorView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/TAShotsViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
