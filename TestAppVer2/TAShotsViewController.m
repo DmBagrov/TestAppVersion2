@@ -42,6 +42,7 @@
     //create model object
     dataObject = [[TADataModel alloc] init];
     
+    //queue for new thread
     NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
     
     NSInvocationOperation *operation = [[NSInvocationOperation alloc]
@@ -139,10 +140,9 @@
 //update list when retun from favorite
 -(void)viewWillAppear:(BOOL)animated
 {
-    //NSLog(@"updated");
     [super viewWillAppear:animated];
     
-    NSLog(@"update");
+    //user return, update view
     [self.tableView reloadData];
 }
 //

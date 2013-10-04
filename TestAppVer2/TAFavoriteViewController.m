@@ -93,10 +93,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //NSLog(@"updated");
     [super viewWillAppear:animated];
     
-    //[NSThread detachNewThreadSelector:@selector(threadRun) toTarget:self withObject:nil];
+    //update favorite list in new thread
     NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
     
     NSInvocationOperation *operation = [[NSInvocationOperation alloc]
