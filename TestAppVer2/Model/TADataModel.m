@@ -71,6 +71,7 @@
         UIGraphicsEndImageContext();
     }
     //load cache to main thread
+    [shotsListFotoCache_ release];
     shotsListFotoCache_ = [shotsListFotoCacheInNewThread mutableCopy];
     [shotsListFotoCacheInNewThread release];
 }

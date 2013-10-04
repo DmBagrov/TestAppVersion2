@@ -87,32 +87,17 @@
     [dataObject deleteItemFromFavoriteList:tappedImage];
     [sender setImage:[UIImage imageNamed:@"unfavorite.png"] forState:UIControlStateNormal];
     
+    //reload view
+    [self.tableView reloadData];
+    
 }
 
-//need to reworked----------------------
-
--(void)viewWillAppear:(BOOL)animated
+ -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    //update favorite list in new thread
-    NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
-    
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc]
-                                        initWithTarget:self
-                                        selector:@selector(updateFavListRender) object:nil];
-    [queue addOperation:operation];
-    [operation release];
-    //
-}
-
--(void) updateFavListRender
-{
-    while (YES)
-    {
-        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-        [NSThread sleepForTimeInterval:0.1];
-    }
+    //reload view - need to update after return
+    [self.tableView reloadData];
 }
 
 //---------------------------------------
