@@ -29,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    //load image in new thread
     
     //load activity indicator
     [imageCachingIndicator setCenter:CGPointMake([UIScreen mainScreen].applicationFrame.size.width/2,
@@ -39,6 +38,9 @@
     [imageCachingIndicator startAnimating];
     [self.view addSubview:imageCachingIndicator];
     //
+    
+    //create model object
+    dataObject = [[TADataModel alloc] init];
     
     NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
     
@@ -52,9 +54,10 @@
 
 -(void)createDataObject
 {
-    //create model object
-    dataObject = [[TADataModel alloc] init];
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    //load image cache in new thread
+    [dataObject loadImageCache];
+    
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,8 +149,9 @@
 
 
 -(void)dealloc {
-    
     [imageCachingIndicator release];
+    [dataObject release];
+    
     [super dealloc];
     }
 @end

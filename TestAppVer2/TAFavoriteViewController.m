@@ -31,7 +31,7 @@
     
     //get link of model object 
     TAShotsViewController *shotsController = [self.tabBarController.childViewControllers objectAtIndex:0];
-    dataObject= [[shotsController dataObject] retain];
+    dataObject = [[shotsController dataObject] retain];
     //
 
 }
@@ -50,7 +50,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"in fav list - %d, row - %d",dataObject.favariteCount,indexPath.row);
     NSString *cellID = [NSString stringWithFormat:@"%d",indexPath.row];
     //NSLog(cellID);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -97,27 +96,32 @@
     //NSLog(@"updated");
     [super viewWillAppear:animated];
     
-    [NSThread detachNewThreadSelector:@selector(threadRun) toTarget:self withObject:nil];
+    //[NSThread detachNewThreadSelector:@selector(threadRun) toTarget:self withObject:nil];
+    NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
+    
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc]
+                                        initWithTarget:self
+                                        selector:@selector(updateFavListRender) object:nil];
+    [queue addOperation:operation];
+    [operation release];
+    //
 }
 
--(void) threadRun
+-(void) updateFavListRender
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     while (YES)
     {
-        [self performSelectorOnMainThread:@selector(updateTable) withObject:nil waitUntilDone:false];
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         [NSThread sleepForTimeInterval:0.1];
     }
-    [pool release];
 }
 
--(void)updateTable
-{
-    [self.tableView  reloadData];
-}
 //---------------------------------------
 
-
+-(void)dealloc
+{
+    [dataObject release];
+    [super dealloc];
+}
 
 @end

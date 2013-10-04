@@ -20,6 +20,8 @@
 
 @property(readonly) NSInteger favariteCount;
 
+
+-(void)loadImageCache;
 -(NSString*)getItemNameByIndex:(NSInteger) index;
 -(UIImage*)getImageByIndex:(NSInteger) index;
 

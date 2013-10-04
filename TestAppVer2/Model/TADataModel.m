@@ -8,6 +8,8 @@
 
 #import "TADataModel.h"
 
+#define imageCount 50
+
 @implementation TADataModel
 
 @synthesize shotsCount, favariteCount;
@@ -19,7 +21,7 @@
         //init array with 50 images
         shotsList_ = [[NSMutableArray alloc] init];
         
-        for(int i=0; i < 50; i++)
+        for(int i=0; i < imageCount; i++)
         {
             [shotsList_ addObject:[NSString stringWithFormat:@"foto%d.png",i]];
         }
@@ -29,15 +31,13 @@
         
         //load foto to cache (need be load in new thread)
         shotsListFotoCache_ = [[NSMutableArray alloc] init];
-        for(int i=0; i < 50; i++)
+        
+        //image for preview load
+        UIImage *loadingImage = [UIImage imageNamed:@"loading.png"];
+        for(int i=0; i < imageCount; i++)
         {
-            //resize image
-            CGSize newSize = CGSizeMake(250, 200);
-            UIGraphicsBeginImageContext(newSize);
-            [[UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",i]] drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-            [shotsListFotoCache_ addObject:UIGraphicsGetImageFromCurrentImageContext()];
-            //load image, but not desized, but on new thread
-            UIGraphicsEndImageContext();
+            //load image with loading img
+            [shotsListFotoCache_ addObject:loadingImage];
 
         }
         //
@@ -57,7 +57,23 @@
 //-----------------------------------------------
 // Shots list methods
 //-----------------------------------------------
-
+-(void)loadImageCache
+{
+    NSMutableArray *shotsListFotoCacheInNewThread = [[NSMutableArray alloc] init];
+    for(int i=0; i < imageCount; i++)
+    {
+        //resize image
+        CGSize newSize = CGSizeMake(250, 200);
+        UIGraphicsBeginImageContext(newSize);
+        [[UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",i]] drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        [shotsListFotoCacheInNewThread addObject:UIGraphicsGetImageFromCurrentImageContext()];
+        //load image, but not desized, but on new thread
+        UIGraphicsEndImageContext();
+    }
+    //load cache to main thread
+    shotsListFotoCache_ = [shotsListFotoCacheInNewThread mutableCopy];
+    [shotsListFotoCacheInNewThread release];
+}
 
 -(NSString*)getItemNameByIndex:(NSInteger)index
 {
@@ -161,6 +177,7 @@
     [favoriteList_ release];
     
     [shotsList_ release];
+    [shotsListFotoCache_ release];
     
     [super dealloc];
 }
