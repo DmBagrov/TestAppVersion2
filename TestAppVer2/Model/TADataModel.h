@@ -20,6 +20,8 @@
 
 @property(readonly) NSInteger favariteCount;
 
+@property(assign) BOOL isNeedRedisplayData;
+
 
 -(void)loadImageCache;
 -(NSString*)getItemNameByIndex:(NSInteger) index;

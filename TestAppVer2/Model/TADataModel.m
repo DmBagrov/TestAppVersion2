@@ -12,7 +12,7 @@
 
 @implementation TADataModel
 
-@synthesize shotsCount, favariteCount;
+@synthesize shotsCount, favariteCount,isNeedRedisplayData;
 
 -(id)init
 {
@@ -59,21 +59,26 @@
 //-----------------------------------------------
 -(void)loadImageCache
 {
-    NSMutableArray *shotsListFotoCacheInNewThread = [[NSMutableArray alloc] init];
-    for(int i=0; i < imageCount; i++)
+    //NSMutableArray *shotsListFotoCacheInNewThread = [[NSMutableArray alloc] init];
+    
+    
+    //load images parallel
+    dispatch_apply(imageCount, dispatch_get_global_queue(0, 0), ^(size_t i)
     {
-        //resize image
         CGSize newSize = CGSizeMake(250, 200);
         UIGraphicsBeginImageContext(newSize);
-        [[UIImage imageNamed:[NSString stringWithFormat:@"foto%d.png",i]] drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-        [shotsListFotoCacheInNewThread addObject:UIGraphicsGetImageFromCurrentImageContext()];
-        //load image, but not desized, but on new thread
+        
+        NSString *imageForResize = [NSString stringWithFormat:@"foto%zd.png",i];
+        
+        [[UIImage imageNamed:imageForResize] drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        [imageForResize release];
+
+        //release old object
+        [shotsListFotoCache_ replaceObjectAtIndex:i withObject:UIGraphicsGetImageFromCurrentImageContext()];
+        isNeedRedisplayData = YES;
+        
         UIGraphicsEndImageContext();
-    }
-    //load cache to main thread
-    [shotsListFotoCache_ release];
-    shotsListFotoCache_ = [shotsListFotoCacheInNewThread mutableCopy];
-    [shotsListFotoCacheInNewThread release];
+    });
 }
 
 -(NSString*)getItemNameByIndex:(NSInteger)index

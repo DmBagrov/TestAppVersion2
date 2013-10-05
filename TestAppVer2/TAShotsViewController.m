@@ -42,23 +42,18 @@
     //create model object
     dataObject = [[TADataModel alloc] init];
     
-    //queue for new thread
-    NSOperationQueue *queue = [NSOperationQueue new]; //autorelease
-    
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc]
-                                        initWithTarget:self
-                                        selector:@selector(createDataObject) object:nil];
-    [queue addOperation:operation];
-    [operation release];
-    //
-}
-
--(void)createDataObject
-{
-    //load image cache in new thread
-    [dataObject loadImageCache];
-    
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    //load images async in global  queue
+    dispatch_async(dispatch_get_global_queue(0, 0), ^
+    {
+        [dataObject loadImageCache];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            //reload data after addition image
+            [self.tableView reloadData];
+            dataObject.isNeedRedisplayData = NO;
+            
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,6 +133,7 @@
 }
 
 //update list when retun from favorite
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

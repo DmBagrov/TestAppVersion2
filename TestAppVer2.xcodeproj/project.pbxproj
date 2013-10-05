@@ -84,6 +84,7 @@
 		08B1FDE417FDEA16000BBB19 /* foto48.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B1FDD117FDEA16000BBB19 /* foto48.png */; };
 		08B1FDE517FDEA16000BBB19 /* foto49.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B1FDD217FDEA16000BBB19 /* foto49.png */; };
 		08B1FDE617FDEA16000BBB19 /* foto50.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B1FDD317FDEA16000BBB19 /* foto50.png */; };
+		08DC8DFF18005FF600B20585 /* TASingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DC8DFE18005FF600B20585 /* TASingleton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +172,8 @@
 		08B1FDD117FDEA16000BBB19 /* foto48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foto48.png; sourceTree = "<group>"; };
 		08B1FDD217FDEA16000BBB19 /* foto49.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foto49.png; sourceTree = "<group>"; };
 		08B1FDD317FDEA16000BBB19 /* foto50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foto50.png; sourceTree = "<group>"; };
+		08DC8DFD18005FF600B20585 /* TASingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TASingleton.h; path = Patterns/TASingleton.h; sourceTree = "<group>"; };
+		08DC8DFE18005FF600B20585 /* TASingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TASingleton.m; path = Patterns/TASingleton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +324,7 @@
 			children = (
 				089D0B9D17FD93550055458A /* TAAppDelegate.h */,
 				089D0B9E17FD93550055458A /* TAAppDelegate.m */,
+				08DC8DFC18005F9F00B20585 /* Patterns */,
 				0800CC3517FD946A0006379E /* Controller */,
 				0800CC3417FD94640006379E /* View */,
 				0800CC3317FD945B0006379E /* Model */,
@@ -347,6 +351,15 @@
 				089D0BA417FD93550055458A /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		08DC8DFC18005F9F00B20585 /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				08DC8DFD18005FF600B20585 /* TASingleton.h */,
+				08DC8DFE18005FF600B20585 /* TASingleton.m */,
+			);
+			name = Patterns;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +498,7 @@
 				089D0BA817FD93550055458A /* TAShotsViewController.m in Sources */,
 				089D0BAF17FD93550055458A /* TAFavoriteViewController.m in Sources */,
 				0800CC3817FD94CF0006379E /* TADataModel.m in Sources */,
+				08DC8DFF18005FF600B20585 /* TASingleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

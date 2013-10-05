@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402607576.878409"
+         timestampString = "402686150.724776"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "100"
-         endingLineNumber = "100"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "-getFavoriteList"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,24 +21,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402607576.878409"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
-         landmarkName = "-getFavoriteList"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402607576.878409"
+         timestampString = "402686150.724776"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "103"
          endingLineNumber = "103"
+         landmarkName = "-getFavoriteList"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestAppVer2/Model/TADataModel.m"
+         timestampString = "402686150.724776"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "108"
+         endingLineNumber = "108"
          landmarkName = "-getFavoriteList"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402607576.878409"
+         timestampString = "402686150.724776"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "106"
+         endingLineNumber = "106"
          landmarkName = "-getFavoriteList"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestAppVer2/TAShotsViewController.m"
-         timestampString = "402646861.499411"
+         timestampString = "402687033.342736"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "133"
-         endingLineNumber = "133"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
          landmarkName = "-favoriteButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,20 +203,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402647170.913395"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
-         landmarkName = "-addNewItemToFavoriteList:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402647170.913395"
+         timestampString = "402686150.724776"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "127"
@@ -229,11 +216,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TestAppVer2/Model/TADataModel.m"
-         timestampString = "402647170.913395"
+         timestampString = "402686150.724776"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "132"
          endingLineNumber = "132"
+         landmarkName = "-addNewItemToFavoriteList:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TestAppVer2/Model/TADataModel.m"
+         timestampString = "402686150.724776"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-addNewItemToFavoriteList:"
          landmarkType = "5">
       </FileBreakpoint>
