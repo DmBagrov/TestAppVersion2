@@ -102,6 +102,7 @@
     else
     {
         //fav list is exist, copy to RAM
+        [favoriteList_ release];
         favoriteList_ = [(NSArray*) favArray mutableCopy];
     }
     
@@ -113,9 +114,8 @@
     favoriteList_ = newFavList;
     
     //update property
-    favariteCount = [favoriteList_ count];
     
-    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithArray:newFavList] forKey:@"FavoriteList"];
+    [[NSUserDefaults standardUserDefaults] setObject:favoriteList_ forKey:@"FavoriteList"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -127,7 +127,7 @@
         [favoriteList_ addObject:newItem];
         
         //update property
-        favariteCount = [favoriteList_ count];
+        //favariteCount = [favoriteList_ count];
     
         [self saveFavoriteListToLongMemory:favoriteList_];
     }
@@ -135,11 +135,9 @@
 
 -(void)deleteItemFromFavoriteList:(NSObject*)deletingItem
 {
-    //NSMutableArray *newFavoriteList = [(NSArray*)[self getFavoriteList] mutableCopy];
     [favoriteList_ removeObject:deletingItem];
     //
     //update property
-    favariteCount = [favoriteList_ count];
     [self saveFavoriteListToLongMemory:favoriteList_];
 }
 
@@ -153,6 +151,11 @@
         }
     }
     return NO;
+}
+
+-(NSInteger)favariteCount
+{
+    return [favoriteList_ count];
 }
 
 -(NSString*)getFavoriteListItemNameByIndex:(NSInteger)index

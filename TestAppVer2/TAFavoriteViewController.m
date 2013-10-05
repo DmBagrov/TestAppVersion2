@@ -56,9 +56,9 @@
     
     if(cell == nil)
     {
-        cell = [[[UITableViewCell alloc]
+        cell = [[UITableViewCell alloc]
                  initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:cellID] init];
+                 reuseIdentifier:cellID];
     }
     cell.imageView.image = [dataObject getFavoriteListImageByIndex:indexPath.row];
     cell.textLabel.text = [dataObject getFavoriteListItemNameByIndex:indexPath.row];
