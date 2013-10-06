@@ -30,8 +30,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     //get link of model object 
-    TAShotsViewController *shotsController = [self.tabBarController.childViewControllers objectAtIndex:0];
-    dataObject = [[shotsController dataObject] retain];
+    //TAShotsViewController *shotsController = [self.tabBarController.childViewControllers objectAtIndex:0];
+    dataObject = [TADataModel sharedObject];
     //
 
 }

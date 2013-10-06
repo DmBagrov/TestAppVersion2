@@ -12,45 +12,67 @@
 
 @implementation TADataModel
 
-@synthesize shotsCount, favariteCount,isNeedRedisplayData;
+@synthesize shotsCount, favariteCount;
+
+static TADataModel *sharedObject_;
+
+static void singleton_remover(){
+    [sharedObject_ release];
+}
+
++ (TADataModel*)sharedObject
+{
+    @synchronized(self)
+    {
+        if(sharedObject_ == nil)
+        {
+            [[self alloc] init];
+        }
+    }
+    return sharedObject_;
+}
+
 
 -(id)init
 {
-    if(self = [super init])
+    self = [super init];
+    
+    sharedObject_ = self;
+    
+    //at exit remove singleton object
+    atexit(singleton_remover);
+    
+    //init array with 50 images
+    shotsList_ = [[NSMutableArray alloc] init];
+        
+    for(int i=0; i < imageCount; i++)
     {
-        //init array with 50 images
-        shotsList_ = [[NSMutableArray alloc] init];
-        
-        for(int i=0; i < imageCount; i++)
-        {
             [shotsList_ addObject:[NSString stringWithFormat:@"foto%d.png",i]];
-        }
-        //
-        shotsCount = [shotsList_ count];
-        //
-        
-        //load foto to cache (need be load in new thread)
-        shotsListFotoCache_ = [[NSMutableArray alloc] init];
-        
-        //image for preview load
-        UIImage *loadingImage = [UIImage imageNamed:@"loading.png"];
-        for(int i=0; i < imageCount; i++)
-        {
-            //load image with loading img
-            [shotsListFotoCache_ addObject:loadingImage];
-
-        }
-        //
-        
-        //init fav list
-        favoriteList_ = [[NSMutableArray alloc] init];
-        //
-        
-        //fill favorite list
-        favoriteList_ = [(NSArray*)[self getFavoriteList] mutableCopy];
-        favariteCount = [favoriteList_ count];
-        //
     }
+    
+    //load foto to cache (need be load in new thread)
+    shotsListFotoCache_ = [[NSMutableArray alloc] init];
+    
+    //image for preview load
+    UIImage *loadingImage = [UIImage imageNamed:@"loading.png"];
+    for(int i=0; i < imageCount; i++)
+    {
+        //load image with loading img
+        [shotsListFotoCache_ addObject:loadingImage];
+
+    }
+    //start loading foto cache
+    [self loadImageCache];
+    //
+    
+    //init fav list
+    favoriteList_ = [[NSMutableArray alloc] init];
+    //
+    
+    //fill favorite list
+    favoriteList_ = [(NSArray*)[self getFavoriteList] mutableCopy];
+    favariteCount = [favoriteList_ count];        //
+
     return self;
 }
 
@@ -59,8 +81,7 @@
 //-----------------------------------------------
 -(void)loadImageCache
 {
-    //NSMutableArray *shotsListFotoCacheInNewThread = [[NSMutableArray alloc] init];
-    
+    __block UIImage *oldImage;
     
     //load images parallel
     dispatch_apply(imageCount, dispatch_get_global_queue(0, 0), ^(size_t i)
@@ -73,12 +94,15 @@
         [[UIImage imageNamed:imageForResize] drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
         [imageForResize release];
 
-        //release old object
+        if(oldImage != nil) oldImage = [shotsListFotoCache_ objectAtIndex:i];
+        
         [shotsListFotoCache_ replaceObjectAtIndex:i withObject:UIGraphicsGetImageFromCurrentImageContext()];
-        isNeedRedisplayData = YES;
         
         UIGraphicsEndImageContext();
     });
+    
+    //release old object
+    [oldImage release];
 }
 
 -(NSString*)getItemNameByIndex:(NSInteger)index
@@ -89,6 +113,11 @@
 -(UIImage*)getImageByIndex:(NSInteger)index
 {
     return [shotsListFotoCache_ objectAtIndex:index];
+}
+
+-(int)shotsCount
+{
+    return [shotsList_ count];
 }
 
 //-----------------------------------------------

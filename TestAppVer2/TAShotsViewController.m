@@ -37,23 +37,16 @@
     
     [imageCachingIndicator startAnimating];
     [self.view addSubview:imageCachingIndicator];
+    //images in cache, stop image caching indicator animation
+    
     //
     
-    //create model object
-    dataObject = [[TADataModel alloc] init];
-    
-    //load images async in global  queue
-    dispatch_async(dispatch_get_global_queue(0, 0), ^
-    {
-        [dataObject loadImageCache];
-        dispatch_async(dispatch_get_main_queue(), ^
-        {
-            //reload data after addition image
-            [self.tableView reloadData];
-            dataObject.isNeedRedisplayData = NO;
-            
-        });
-    });
+    //this code must be in app delegate
+    //create model object and load images async in global queue
+    dataObject = [TADataModel sharedObject];
+    imageCachingIndicator.hidden = YES;
+    //
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,8 +63,6 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //images in cache, stop image caching indicator animation
-    imageCachingIndicator.hidden = YES;
     
     NSString *cellID = [NSString stringWithFormat:@"%d",indexPath.row];
     //NSLog(cellID);

@@ -16,11 +16,10 @@
     NSMutableArray *favoriteList_;
 }
 
-@property(readonly) NSInteger shotsCount;
++(TADataModel*) sharedObject;
 
-@property(readonly) NSInteger favariteCount;
-
-@property(assign) BOOL isNeedRedisplayData;
+@property(assign, readonly) NSInteger shotsCount;
+@property(assign, readonly) NSInteger favariteCount;
 
 
 -(void)loadImageCache;

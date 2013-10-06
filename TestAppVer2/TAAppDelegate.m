@@ -9,8 +9,10 @@
 #import "TAAppDelegate.h"
 
 #import "TAShotsViewController.h"
-
 #import "TAFavoriteViewController.h"
+
+//for init model
+#import "TADataModel.h"
 
 @implementation TAAppDelegate
 
@@ -23,12 +25,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //start init model in backgroud
+    dispatch_async(dispatch_get_global_queue(0,0), ^
+    {
+        [TADataModel sharedObject];
+    });
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[[TAShotsViewController alloc] initWithNibName:@"TAShotsViewController" bundle:nil] autorelease];
-    UIViewController *viewController2 = [[[TAFavoriteViewController alloc] initWithNibName:@"TAFavoriteViewController" bundle:nil] autorelease];
+    UIViewController *shotsController = [[[TAShotsViewController alloc] initWithNibName:@"TAShotsViewController" bundle:nil] autorelease];
+    UIViewController *favoriteController = [[[TAFavoriteViewController alloc] initWithNibName:@"TAFavoriteViewController" bundle:nil] autorelease];
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    self.tabBarController.viewControllers = @[shotsController, favoriteController];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
